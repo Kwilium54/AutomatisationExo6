@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class Truck {
+class Truck implements VehicleInterface {
     private $costPerKm;
     private $fuelType;
 
@@ -11,11 +11,11 @@ class Truck {
         $this->fuelType = $fuelType;
     }
 
-    public function getCostPerKm() {
+    public function getCostPerKm(): float {
         return $this->costPerKm;
     }
 
-    public function getFuelType() {
+    public function getFuelType(): string {
         return $this->fuelType;
     }
 }
