@@ -1,7 +1,19 @@
 <?php
 require('../vendor/autoload.php');
 
-die('ici vous pouvez tester votre singleton !');
-# TODO: Récuperer une instance de Config
-# Afficher une valeur contenu dans config.php
-# Récupérer une seconde instance de Config et vérifié que les deux instances sont identiques
+use App\Config;
+
+$config = Config::getInstance();
+
+echo "=== Config ===" . PHP_EOL . PHP_EOL;
+echo "apiKey : " . $config->get('apiKey') . PHP_EOL;
+echo "debug  : " . ($config->get('debug') ? 'true' : 'false') . PHP_EOL;
+echo "db host: " . $config->get('db')['host'] . PHP_EOL;
+
+echo PHP_EOL;
+
+$config2 = Config::getInstance();
+
+echo "=== Vérification Singleton ===" . PHP_EOL . PHP_EOL;
+echo '$config === $config2 : ';
+var_dump($config === $config2);
