@@ -1,8 +1,27 @@
 <?php
 require('../vendor/autoload.php');
 
-die('ici, vous pouvez tester votre builder !');
+use App\MySQLQueryBuilder;
 
-# TODO: Creer un QueryBuilder
-# Ecrire une requête en chainant des methodes
-# Afficher la requête
+$builder = new MySQLQueryBuilder();
+
+$query1 = $builder
+    ->select('id', 'name', 'email')
+    ->from('users', 'u')
+    ->where('u.age > 18')
+    ->where('u.active = 1')
+    ->orderBy('u.name')
+    ->limit(10)
+    ->getSQL();
+
+echo $query1 . PHP_EOL;
+
+$builder2 = new MySQLQueryBuilder();
+
+$query2 = $builder2
+    ->select('*')
+    ->from('products')
+    ->where('price < 100')
+    ->getSQL();
+
+echo $query2 . PHP_EOL;
